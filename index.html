@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RTD LATAM — Inteligencia de Mercado 2025–2026</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg:       #09090f;
+  --s1:       #0e0e18;
+  --s2:       #131320;
+  --s3:       #191926;
+  --border:   #1f1f32;
+  --border2:  #2a2a42;
+
+  /* Brand accent — amber gold, RTD energy */
+  --gold:     #f0c040;
+  --gold2:    #c89820;
+  --blue:     #4db8f0;
+  --rose:     #f04d7a;
+  --green:    #4df0a0;
+  --purple:   #a07af0;
+  --orange:   #f08040;
+  --teal:     #40d4c8;
+
+  --tx:       #e8eaf2;
+  --tx2:      #8890aa;
+  --tx3:      #40445a;
+
+  --ff-display: Georgia, 'Times New Roman', serif;
+  --ff-body:    'Segoe UI', Arial, sans-serif;
+  --ff-mono:    'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--tx); font-family: var(--ff-body); font-size: 13px; min-height: 100vh; }
+
+/* ─────────── HEADER ─────────── */
+.header {
+  background: var(--s1);
+  border-bottom: 1px solid var(--border);
+  padding: 0 36px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: stretch;
+  min-height: 68px;
+}
+.header-brand {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 14px 0;
+}
+.header-brand .eyebrow {
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.header-brand h1 {
+  font-family: var(--ff-display);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--tx);
+}
+.header-brand h1 em { color: var(--gold); font-style: normal; }
+.header-meta {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0;
+  border-left: 1px solid var(--border);
+  padding-left: 24px;
+  margin-left: 0;
+}
+.header-stat { text-align: center; }
+.header-stat .hs-val {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: -0.02em;
+  display: block;
+}
+.header-stat .hs-lbl {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--tx3);
+  font-weight: 700;
+  display: block;
+  margin-top: 2px;
+}
+.header-divider { width: 1px; height: 32px; background: var(--border); }
+
+/* ─────────── SECTION TABS ─────────── */
+.section-nav {
+  background: var(--s1);
+  border-bottom: 2px solid var(--border);
+  padding: 0 36px;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.section-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 22px;
+  height: 46px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--tx3);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.15s;
+  white-space: nowrap;
+  position: relative;
+}
+.section-tab .tab-num {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 2px;
+  background: var(--s3);
+  color: var(--tx3);
+  letter-spacing: 0;
+}
+.section-tab:hover { color: var(--tx2); }
+.section-tab.active { color: var(--tx); border-bottom-color: var(--gold); }
+.section-tab.active .tab-num { background: var(--gold); color: #09090f; }
+.section-tab.section-b { color: var(--blue); }
+.section-tab.section-b.active { border-bottom-color: var(--blue); }
+.section-tab.section-b.active .tab-num { background: var(--blue); color: #09090f; }
+.tab-separator {
+  align-self: stretch;
+  width: 1px;
+  background: var(--border);
+  margin: 10px 8px;
+}
+.tab-section-label {
+  font-size: 8.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--tx3);
+  padding: 0 14px;
+  align-self: center;
+}
+
+/* ─────────── MAIN ─────────── */
+.main { padding: 28px 36px; max-width: 1600px; margin: 0 auto; }
+.page { display: none; }
+.page.active { display: block; }
+
+/* ─────────── SECTION HEADER ─────────── */
+.page-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.page-header-left .ph-label {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.page-header-left .ph-label.blue { color: var(--blue); }
+.page-header-left h2 {
+  font-family: var(--ff-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--tx);
+  letter-spacing: -0.02em;
+}
+.page-header-right {
+  font-size: 11px;
+  color: var(--tx2);
+  text-align: right;
+  line-height: 1.6;
+}
+
+/* ─────────── KPI STRIP ─────────── */
+.kpi-strip {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.kpi-strip-4 { grid-template-columns: repeat(4, 1fr); }
+.kpi-strip-5 { grid-template-columns: repeat(5, 1fr); }
+.kpi-strip-6 { grid-template-columns: repeat(6, 1fr); }
+
+.kpi {
+  background: var(--s2);
+  border: 1px solid var(--border);
+  padding: 16px 18px;
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+}
+.kpi-accent { position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+.kpi-label { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; color: var(--tx3); margin-bottom: 8px; }
+.kpi-value { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; color: var(--tx); line-height: 1; margin-bottom: 4px; }
+.kpi-sub { font-size: 10.5px; color: var(--tx2); }
+
+/* ─────────── GRID ─────────── */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.g21 { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 16px; }
+.g12 { display: grid; grid-template-columns: 1fr 2fr; gap: 16px; margin-bottom: 16px; }
+.g31 { display: grid; grid-template-columns: 3fr 1fr; gap: 16px; margin-bottom: 16px; }
+.g13 { display: grid; grid-template-columns: 1fr 3fr; gap: 16px; margin-bottom: 16px; }
+.full { margin-bottom: 16px; }
+
+/* ─────────── CARD ─────────── */
+.card {
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 20px 22px;
+}
+.card-hd {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--tx3);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-hd-note { font-size: 10px; text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--tx2); }
+
+/* ─────────── TABLE ─────────── */
+.tbl { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+.tbl th {
+  padding: 6px 10px;
+  text-align: left;
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--tx3);
+  border-bottom: 1px solid var(--border);
+}
+.tbl td {
+  padding: 7px 10px;
+  border-bottom: 1px solid #12121e;
+  color: var(--tx2);
+  vertical-align: middle;
+}
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:hover td { background: var(--s3); color: var(--tx); }
+.tbl .num { text-align: right; font-variant-numeric: tabular-nums; color: var(--tx); font-weight: 600; }
+.tbl-scroll { max-height: 380px; overflow-y: auto; }
+.tbl-scroll::-webkit-scrollbar { width: 3px; }
+.tbl-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+/* ─────────── BADGES ─────────── */
+.badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.b-ferm { background: rgba(77,184,240,0.12); color: var(--blue); }
+.b-dest { background: rgba(240,77,122,0.12); color: var(--rose); }
+.b-econ { background: rgba(64,212,200,0.12); color: var(--teal); }
+.b-med  { background: rgba(240,192,64,0.12); color: var(--gold); }
+.b-prem { background: rgba(160,122,240,0.12); color: var(--purple); }
+
+/* ─────────── INLINE BAR ─────────── */
+.ibar-wrap { position: relative; }
+.ibar {
+  display: block;
+  height: 3px;
+  border-radius: 1px;
+  margin-top: 4px;
+  opacity: 0.5;
+}
+
+/* ─────────── SEARCH / FILTER ─────────── */
+.filter-row { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; align-items: center; }
+input[type=text], select {
+  background: var(--s3);
+  border: 1px solid var(--border);
+  color: var(--tx);
+  padding: 6px 11px;
+  font-size: 12px;
+  border-radius: 3px;
+  outline: none;
+  font-family: var(--ff-body);
+}
+input[type=text] { flex: 1; min-width: 180px; }
+input[type=text]::placeholder { color: var(--tx3); }
+input[type=text]:focus, select:focus { border-color: var(--gold); }
+select option { background: var(--s2); }
+
+.filter-btn {
+  background: var(--s3);
+  border: 1px solid var(--border);
+  color: var(--tx2);
+  padding: 6px 12px;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.filter-btn:hover { border-color: var(--tx2); color: var(--tx); }
+.filter-btn.on { background: var(--gold); color: #09090f; border-color: var(--gold); }
+
+/* ─────────── INSIGHT BOX ─────────── */
+.insight {
+  background: linear-gradient(135deg, #131320, #0e1020);
+  border: 1px solid var(--border2);
+  border-left: 3px solid var(--gold);
+  border-radius: 3px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  font-size: 12px;
+  color: var(--tx2);
+  line-height: 1.6;
+}
+.insight strong { color: var(--gold); }
+.insight.blue { border-left-color: var(--blue); }
+.insight.blue strong { color: var(--blue); }
+.insight.rose { border-left-color: var(--rose); }
+.insight.rose strong { color: var(--rose); }
+
+/* ─────────── MARKET SCORECARD ─────────── */
+.market-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.market-card {
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 14px 14px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.market-card:hover { border-color: var(--border2); }
+.market-card.selected { border-color: var(--gold); background: var(--s3); }
+.mc-flag { font-size: 20px; margin-bottom: 6px; }
+.mc-country { font-size: 11px; font-weight: 700; color: var(--tx); margin-bottom: 2px; }
+.mc-cagr {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.mc-label { font-size: 9px; color: var(--tx3); text-transform: uppercase; letter-spacing: 0.1em; }
+
+/* ─────────── COMPETITOR MATRIX ─────────── */
+.comp-matrix {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.comp-card {
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 14px 16px;
+}
+.cc-brand { font-size: 12px; font-weight: 700; color: var(--tx); margin-bottom: 4px; }
+.cc-maker { font-size: 10px; color: var(--tx2); margin-bottom: 8px; }
+.cc-row { display: flex; justify-content: space-between; font-size: 10.5px; margin-bottom: 3px; }
+.cc-key { color: var(--tx3); }
+.cc-val { color: var(--tx); font-weight: 600; }
+.cc-price { font-size: 16px; font-weight: 700; color: var(--green); margin-top: 6px; }
+
+/* ─────────── TAX VISUAL ─────────── */
+.tax-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.tax-row {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  align-items: center;
+  gap: 10px;
+}
+.tax-country { font-size: 10.5px; font-weight: 700; color: var(--tx2); }
+.tax-bar-wrap { height: 16px; background: var(--s3); border-radius: 2px; overflow: hidden; display: flex; }
+.tax-segment { height: 100%; transition: width 0.4s ease; }
+.tax-total { font-size: 10.5px; font-weight: 700; color: var(--tx); width: 36px; text-align: right; }
+
+/* ─────────── MX DETAIL STYLE OVERRIDE ─────────── */
+.mx-page .kpi-value { color: var(--blue); }
+.mx-page .page-header-left .ph-label { color: var(--blue); }
+
+/* ─────────── DIVIDER ─────────── */
+.divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+/* ─────────── COUNT CHIP ─────────── */
+.count-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--s3);
+  border: 1px solid var(--border);
+  font-size: 10px;
+  color: var(--tx2);
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<div class="header">
+  <div class="header-brand">
+    <div class="eyebrow">Inteligencia Estratégica · Bebidas Alcohólicas</div>
+    <h1>Mercado <em>RTD</em> en Latinoamérica &amp; México Aduanal</h1>
+  </div>
+  <div class="header-meta">
+    <div class="header-stat">
+      <span class="hs-val">USD 42.9B</span>
+      <span class="hs-lbl">Mercado Global 2034</span>
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-stat">
+      <span class="hs-val">6 Países</span>
+      <span class="hs-lbl">Analizados LATAM</span>
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-stat">
+      <span class="hs-val">USD 53.7M</span>
+      <span class="hs-lbl">FOB MX 2022–2026</span>
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-stat">
+      <span class="hs-val">3,643</span>
+      <span class="hs-lbl">Operaciones MX</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SECTION NAV ═══════════════ -->
+<div class="section-nav">
+  <span class="tab-section-label">A · LATAM</span>
+  <div class="section-tab active" onclick="nav('overview',this)">
+    <span class="tab-num">01</span> Vista General
+  </div>
+  <div class="section-tab" onclick="nav('mercados',this)">
+    <span class="tab-num">02</span> Mercados &amp; CAGR
+  </div>
+  <div class="section-tab" onclick="nav('competidores',this)">
+    <span class="tab-num">03</span> Competidores
+  </div>
+  <div class="section-tab" onclick="nav('fiscal',this)">
+    <span class="tab-num">04</span> Estructura Fiscal
+  </div>
+  <div class="section-tab" onclick="nav('consumer',this)">
+    <span class="tab-num">05</span> Consumidor &amp; Tendencias
+  </div>
+
+  <div class="tab-separator"></div>
+  <span class="tab-section-label" style="color:var(--blue)">B · MÉXICO</span>
+
+  <div class="section-tab section-b" onclick="nav('mx-overview',this)">
+    <span class="tab-num">06</span> MX · Vista General
+  </div>
+  <div class="section-tab section-b" onclick="nav('mx-trend',this)">
+    <span class="tab-num">07</span> MX · Tendencia
+  </div>
+  <div class="section-tab section-b" onclick="nav('mx-geo',this)">
+    <span class="tab-num">08</span> MX · Origen &amp; Aduana
+  </div>
+  <div class="section-tab section-b" onclick="nav('mx-actores',this)">
+    <span class="tab-num">09</span> MX · Actores
+  </div>
+  <div class="section-tab section-b" onclick="nav('mx-explorer',this)">
+    <span class="tab-num">10</span> MX · Explorador
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════════════════════════════════
+     01 · LATAM OVERVIEW
+═══════════════════════════════════════════ -->
+<div class="page active" id="page-overview">
+  <div class="page-header">
+    <div class="page-header-left">
+      <div class="ph-label">A · Investigación de Mercado LATAM</div>
+      <h2>El Mercado RTD: Tamaño, Dinámica y Oportunidad Regional</h2>
+    </div>
+    <div class="page-header-right">
+      Fuentes: IWSR · Market.us · Euromonitor · Future Market Insights<br>
+      Período de proyección: 2024–2036
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>Tesis central:</strong> El mercado RTD global transita de la expansión explosiva post-pandemia hacia la <strong>maduración selectiva</strong>. Los hard seltzers de malta pierden tracción; el volumen y el valor migran hacia <strong>destilados premium, cócteles listos para beber y bases fermentadas con sabores locales intensos</strong>. Latinoamérica lidera este reposicionamiento con Brasil como el mercado de mayor crecimiento proyectado (CAGR 14.39% en cócteles RTD).
+  </div>
+
+  <div class="kpi-strip kpi-strip-4">
+    <div class="kpi">
+      <div class="kpi-accent" style="background:var(--gold)"></div>
+      <div class="kpi-label">Valor Global RTD 2034</div>
+      <div class="kpi-value">$42.9B</div>
+      <div class="kpi-sub">USD · CAGR 5.9% desde $24.2B en 2024</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-accent" style="background:var(--rose)"></div>
+      <div class="kpi-label">RTD Cocktails Global 2036</div>
+      <div class="kpi-value">$9.44B</div>
+      <div class="kpi-sub">CAGR 13.7% · segmento de mayor crecimiento</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-accent" style="background:var(--green)"></div>
+      <div class="kpi-label">Share Destilados en RTD Global</div>
+      <div class="kpi-value">47.8%</div>
+      <div class="kpi-sub">dominan por valor percibido · premium positioning</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-accent" style="background:var(--blue)"></div>
+      <div class="kpi-label">Consumidores Frecuentes (≥1/semana)</div>
+      <div class="kpi-value">55%</div>
+      <div class="kpi-sub">vs 39% en 2022 · frecuencia en alza sostenida</div>
+    </div>
+  </div>
+
+  <div class="g21">
+    <div class="card">
+      <div class="card-hd">Proyección de Mercado Global RTD 2024–2034 (USD Billones) <span class="card-hd-note">CAGR 5.9%</span></div>
+      <canvas id="c-global-proj" height="150"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-hd">Composición por Base de Formulación <span class="card-hd-note">share global 2025</span></div>
+      <canvas id="c-base-donut" height="150"></canvas>
+      <div style="margin-top:12px;font-size:10.5px;line-height:1.8">
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--tx2)">🥃 Destilados (vodka, gin, ron, whisky)</span><span style="color:var(--gold);font-weight:700">47.8%</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--tx2)">🍺 Base Malta / Fermentadas</span><span style="color:var(--gold);font-weight:700">31.2%</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--tx2)">🍷 Base Vino / Aperitivos</span><span style="color:var(--gold);font-weight:700">14.5%</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--tx2)">🌿 Otros / Co-branding</span><span style="color:var(--gold);font-weight:700">6.5%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="g3">
+    <div class="card">
+      <div class="card-hd">CAGR por Mercado LATAM <span class="card-hd-note">volumen RTD proyectado</span></div>
+      <canvas id="c-cagr-latam" height="160"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-hd">Tamaño Relativo de Mercados LATAM <span class="card-hd-note">FOB importaciones + proyección consumo</span></div>
+      <canvas id="c-mkt-size" height="160"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-hd">Formato de Packaging Ganador por País</div>
+      <table class="tbl" style="margin-top:-4px">
+        <thead><tr><th>País</th><th>Formato Primario</th><th>Tendencia</th></tr></thead>
+        <tbody>
+          <tr><td>🇧🇷 Brasil</td><td>Lata 269ml / Bot. 330ml</td><td><span class="badge b-prem">Premium</span></td></tr>
+          <tr><td>🇲🇽 México</td><td>Lata Sleek 355–473ml</td><td><span class="badge b-med">Multipack</span></td></tr>
+          <tr><td>🇨🇴 Colombia</td><td>PET 300ml / Lata 350ml</td><td><span class="badge b-econ">Acceso</span></td></tr>
+          <tr><td>🇵🇪 Perú</td><td>Lata aluminio 350–473ml</td><td><span class="badge b-med">Creciendo</span></td></tr>
+          <tr><td>🇨🇱 Chile</td><td>Botella vidrio 275–310cc</td><td><span class="badge b-prem">Premium</span></td></tr>
+          <tr><td>🇪🇨 Ecuador</td><td>PET / Lata aluminio</td><td><span class="badge b-econ">Emergente</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     02 · MERCADOS & CAGR
+═══════════════════════════════════════════ -->
+<div class="page" id="page-mercados">
+  <div class="page-header">
+    <div class="page-header-left">
+      <div class="ph-label">A · Investigación de Mercado LATAM</div>
+      <h2>Análisis por País — Crecimiento, Consumo y Proyecciones</h2>
+    </div>
+    <div class="page-header-right">Fuentes: IWSR · Euromonitor · Future Market Insights · StrategyHelix</div>
+  </div>
+
+  <div class="market-grid" id="market-cards">
+    <!-- JS rendered -->
+  </div>
+
+  <div id="market-detail"></div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-hd">Volumen CAGR Proyectado 2022–2030 por País</div>
+      <canvas id="c-cagr-bar" height="160"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-hd">Valor de Mercado Proyectado por País <span class="card-hd-note">USD millones · horizonte 2027–2036</span></div>
+      <canvas id="c-mktval-bar" height="160"></canvas>
+    </div>
+  </div>
+
+  <div class="card full">
+    <div class="card-hd">Perfil Detallado por País y Categoría RTD</div>
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>País</th><th>Moneda</th><th>CAGR RTD</th><th>Segmento Líder</th>
+          <th>Demografía Clave</th><th>Canal Principal</th><th>Notas Estratégicas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>🇧🇷 Brasil</strong></td><td>BRL</td>
+          <td class="num" style="color:var(--green)">+14.39%</td>
+          <td>RTD Cocktails · FABs malta</td>
+          <td>18–25 años</td><td>Supermercados + off-trade</td>
+          <td style="color:var(--tx2)">Mayor consumo de destilados LAC: 7.8L/cápita. Ambev domina con Skol Beats Spirit (7.9% ABV).</td>
+        </tr>
+        <tr>
+          <td><strong>🇲🇽 México</strong></td><td>MXN</td>
+          <td class="num" style="color:var(--gold)">+5.0%</td>
+          <td>Cócteles Tequila/Vodka RTD</td>
+          <td>Millennial 47% + Gen Z 17%</td><td>OXXO + moderno</td>
+          <td style="color:var(--tx2)">64% consumidores jóvenes. IEPS 26.5% encarece producto importado. Tequila exento.</td>
+        </tr>
+        <tr>
+          <td><strong>🇨🇴 Colombia</strong></td><td>COP</td>
+          <td class="num" style="color:var(--green)">Doble dígito</td>
+          <td>Aperitivos Vodka (Like/Quala)</td>
+          <td>18–25 años · NSE medio</td><td>Tradicional + D1/Ara</td>
+          <td style="color:var(--tx2)">Like (Quala) reconfiguró el mercado con PVP disruptivo. Clasificación "Aperitivo No Vínico" evita monopolio departamental.</td>
+        </tr>
+        <tr>
+          <td><strong>🇵🇪 Perú</strong></td><td>PEN</td>
+          <td class="num" style="color:var(--gold)">Constante</td>
+          <td>Cócteles RTD + wellness</td>
+          <td>18–25 años</td><td>Off-trade latas 473ml</td>
+          <td style="color:var(--tx2)">Sustitución gradual de cerveza. RTD Tea off-trade: 57.3M litros proyectados 2026. ISC S/2.48/L pisco.</td>
+        </tr>
+        <tr>
+          <td><strong>🇨🇱 Chile</strong></td><td>CLP</td>
+          <td class="num" style="color:var(--tx2)">Moderado</td>
+          <td>Destilados premium (pisco)</td>
+          <td>18–25 años · clase media</td><td>Supermercados</td>
+          <td style="color:var(--tx2)">ILA 31.5% en destilados. Mistral Ice Blend (CCU) líder con base pisco 7% ABV.</td>
+        </tr>
+        <tr>
+          <td><strong>🇪🇨 Ecuador</strong></td><td>USD</td>
+          <td class="num" style="color:var(--gold)">+4.99%</td>
+          <td>Fermentadas + RTD bajo ABV</td>
+          <td>18–25 años</td><td>Retail moderno</td>
+          <td style="color:var(--tx2)">ICE USD 10.41/LAL en destilados. Exoneración temporal por Mundial 2026 (hasta 19-jul). Efecto cascada IVA 15%.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     03 · COMPETIDORES
+═══════════════════════════════════════════ -->
+<div class="page" id="page-competidores">
+  <div class="page-header">
+    <div class="page-header-left">
+      <div class="ph-label">A · Investigación de Mercado LATAM</div>
+      <h2>Landscape Competitivo — Marcas, Formulación y Precios</h2>
+    </div>
+    <div class="page-header-right">Datos retail 2025–2026 · PVP en USD</div>
+  </div>
+
+  <div class="insight rose">
+    <strong>Dinámica clave:</strong> El off-trade moderno (68.1% share) es el campo de batalla. <strong>Like (Quala, Colombia)</strong> redefinió el piso de precios con $0.75–1.00 USD a 4% ABV, forzando a marcas como Smirnoff Ice a justificar su premium. Las alianzas de co-branding — <strong>BACARDÍ + Coca-Cola, AB InBev + PepsiCo (Svns 7Up)</strong> — usan reconocimiento de marca inmediato para tomar espacio en refrigeradores.
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-hd">Mapa de Precio vs ABV por Marca</div>
+      <canvas id="c-comp-scatter" height="200"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-hd">FOB por Base de Formulación en MX <span class="card-hd-note">proxy comportamiento importador</span></div>
+      <canvas id="c-base-mx" height="200"></canvas>
+    </div>
+  </div>
+
+  <div class="comp-matrix" id="comp-cards"><!-- JS --></div>
+
+  <div class="card full">
+    <div class="card-hd">Matriz Competitiva Completa</div>
+    <table class="tbl">
+      <thead>
+        <tr><th>Marca</th><th>Fabricante</th><th>Base</th><th>ABV</th><th>Vol ml</th><th>Sabor</th><th>Tier</th><th class="num">PVP USD</th><th>Países</th></tr>
+      </thead>
+      <tbody id="comp-table-body"><!-- JS --></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     04 · ESTRUCTURA FISCAL
+═══════════════════════════════════════════ -->
+<div class="page" id="page-fiscal">
+  <div class="page-header">
+    <div class="page-header-left">
+      <div class="ph-label">A · Investigación de Mercado LATAM</div>
+      <h2>Arquitectura Fiscal y Arancelaria — RTD por País</h2>
+    </div>
+    <div class="page-header-right">Vigencia: 2025–2026 · Datos oficiales SRI, SAT, DIAN, Receita Federal, SII, SUNAT</div>
+  </div>
+
+  <div class="insight">
+    <strong>Principio crítico:</strong> La elección de la base de formulación (fermentada 22.06 vs. destilado 22.08) determina el <strong>régimen fiscal completo</strong> en cada mercado — no solo el arancel, sino el impuesto especial aplicable, la posibilidad de clasificación alternativa y el IVA en cascada. En Brasil, migrar de 22.06 a 22.08 activa +37.5pp de carga adicional (II + IPI + PIS + COFINS).
+  </div>
+
+  <div class="g12">
+    <div class="card">
+      <div class="card-hd">Carga Fiscal Total Estimada <span class="card-hd-note">por país y tipo base · destilados 22.08</span></div>
+      <div class="tax-stack" id="tax-stack"><!-- JS --></div>
+    </div>
+    <div class="card">
+      <div class="card-hd">Comparativa de Impuestos por País y Componente</div>
+      <canvas id="c-tax-bar" height="200"></canvas>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-hd">Tabla Detallada — Fact Taxes & Tariffs</div>
+      <div class="tbl-scroll">
+        <table class="tbl">
+          <thead>
+            <tr><th>ID</th><th>País</th><th>Base</th><th>HS Code</th><th class="num">Arancel %</th><th>Impuesto Especial</th><th class="num">IVA %</th><th>Fuente Legal</th></tr>
+          </thead>
+          <tbody id="tax-table-body"><!-- JS --></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-hd">Alertas y Casos Especiales</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+        <div class="insight" style="margin:0">
+          <strong>🇧🇷 Brasil — Disputa NCM 22.06 vs 22.08:</strong> Receita Federal emitió soluciones vinculantes. Cualquier mezcla fermentada + destilado cae en NCM 2208.90.00: II 18% + IPI 19.5% + PIS 2.1% + COFINS 9.65%.
+        </div>
+        <div class="insight" style="margin:0">
+          <strong>🇨🇴 Colombia — Ventana "Aperitivo No Vínico":</strong> Like (Quala) accedió al retail masivo bajo Registro INVIMA 2025L-0013701 evitando el monopolio rentístico departamental. IVA plurifásico 5% vs 19% en malta.
+        </div>
+        <div class="insight" style="margin:0">
+          <strong>🇪🇨 Ecuador — Exoneración Mundial 2026:</strong> Decreto 420 de Noboa suspende ICE en cervezas y "bebidas de moderación" (&lt;5% ABV) hasta 19-jul-2026. RTD destilados 22.08 siguen tributando USD 10.41/LAL.
+        </div>
+        <div class="insight" style="margin:0">
+          <strong>🇨🇴 Colombia — Maicao Exception:</strong> Subpartida 2208.90.10.00 (alcohol etílico &lt;80% vol.) queda <strong>exceptuada</strong> del cupo Zona Especial Guajira. Ventana para importar bases concentradas para dilución local.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     05 · CONSUMIDOR Y TENDENCIAS
+═══════════════════════════════════════════ -->
+<div class="page" id="page-consumer">
+  <div class="page-header">
+    <div class="page-header-left">
+      <div class="ph-label">A · Investigación de Mercado LATAM</div>
+      <h2>Perfil del Consumidor RTD y Tendencias 2025–2026</h2>
+    </div>
+    <div class="page-header-right">Fuentes: IWSR · Penn State Extension · Euromonitor</div>
+  </div>
+
+  <div class="kpi-strip kpi-strip-4">
+    <div class="kpi">
+      <div class="kpi-accent" style="background:var(--purple)"></div>
+      <div class="kpi-label">Target Demográfico Primario</div>
+      <div class="kpi-value" style="font-size:18px">18–25 años</div>
+      <div class="kpi-sub">36.4% del consumo global RTD</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-accent" style="background:var(--green)"></div>
+      <div class="kpi-label">Frecuencia ≥ 1 / semana 2025</div>
+      <div class="kpi-value">55%</div>
+      <div class="kpi-sub">vs 39% en 2022 · +16pp en 3 años</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-accent" style="background:var(--rose)"></div>
+      <div class="kpi-label">Consumidores Nuevos 2024</div>
+      <div class="kpi-value">5%</div>
+      <div class="kpi-sub">vs 24% en 2021 · categoría madura</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-accent" style="background:var(--blue)"></div>
+      <div class="kpi-label">Willing to Pay Premium (Destilado)</div>
+      <div class="kpi-value">+25%</div>
+      <div class="kpi-sub">sobre base malta para misma ABV</div>
+    </div>
+  </div>
+
+  <div class="g21">
+    <div class="card">
+      <div class="card-hd">Evolución Frecuencia de Consumo RTD (% consumidores semanales)</div>
+      <canvas id="c-freq" height="150"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-hd">ABV Distribution — Lanzamientos Globales RTD</div>
+      <canvas id="c-abv" height="150"></canvas>
+    </div>
+  </div>
+
+  <div class="g3">
+    <div class="card">
+      <div class="card-hd">Sabores Emergentes LATAM 2025–2026</div>
+      <table class="tbl">
+        <tbody>
+          <tr><td>🥭 Mango + Chamoy (MX/CO)</td><td class="num"><span class="badge b-prem">Tendencia #1</span></td></tr>
+          <tr><td>🌿 Tamarindo ácido-dulce (MX)</td><td class="num"><span class="badge b-prem">Creciendo</span></td></tr>
+          <tr><td>🍈 Maracuyá / Lulo (CO/PE)</td><td class="num"><span class="badge b-med">Regional</span></td></tr>
+          <tr><td>🍏 Manzana Verde (BR/CO)</td><td class="num"><span class="badge b-med">Establecido</span></td></tr>
+          <tr><td>🫐 Blueberry (CO)</td><td class="num"><span class="badge b-econ">Masivo</span></td></tr>
+          <tr><td>🍋 Limón / Lima (Regional)</td><td class="num"><span class="badge b-econ">Declina</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-hd">Atributos Valorados por Generación</div>
+      <canvas id="c-attrs" height="160"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-hd">Canal de Compra RTD off-trade LATAM</div>
+      <canvas id="c-channel" height="160"></canvas>
+    </div>
+  </div>
+
+  <div class="insight blue">
+    <strong>Implicancia estratégica para Duff Beer RTD:</strong> El consumidor objetivo (18–25 años) tiene <strong>alta afinidad cultural con Los Simpsons</strong> y tolera la extensión de producto si mantiene coherencia narrativa con el universo. La preferencia por lata + ABV 4–5% + formato multipack en OXXO/Costco define el brief de producto correcto. El riesgo de canibalización de la cerveza principal es manejable si el naming evita ambigüedad.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     06 · MX OVERVIEW
+══════════════════════════════════════════════════════════════ -->
+<div class="page mx-page" id="page-mx-overview">
+  <div class="page-header">
+    <div class="page-header-left">
+      <div class="ph-label blue">B · Datos Aduaneros México · Datasur 2022–2026</div>
+      <h2>México — Vista General de Importaciones RTD &amp; Alcohólicas</h2>
+    </div>
+    <div class="page-header-right">
+      Partidas 22.06 (Fermentadas) + 22.08 (Destilados)<br>
+      Ene 2022 – Abr 2026 · 3,643 operaciones
+    </div>
+  </div>
+
+  <div class="insight blue">
+    <strong>Conexión con la investigación:</strong> México registra una CAGR de +5% en volumen RTD (2022–2027, IWSR). Los datos aduaneros confirman ese crecimiento: el FOB importado creció <strong>+96.5% de 2023 a 2024</strong> y el ritmo de 2025 apunta a un nuevo máximo histórico. <strong>Italia domina las importaciones</strong> (33.7% del valor total) principalmente vía Aperol/Campari, coherente con el liderazgo global de los aperitivos destilados premium.
+  </div>
+
+  <div class="kpi-strip kpi-strip-5">
+    <div class="kpi">
+      <div class="kpi-accent" style="background:var(--blue)"></div>
+      <div class="kpi-label">FOB Total Importado</div>
+      <div class="kpi-value">$53.7M</div>
+      <div class="kpi-sub">USD · ene 2022 – abr 2026</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-accent" style="background:var(--blue)"></div>
+      <div class="kpi-label">Fermentadas 22.06</div>
+      <div class="kpi-value">$39.6M</div>
+      <div class="kpi-sub">73.7% del total importado</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-accent" style="background:var(--rose)"></div>
+      <div class="kpi-label">Destilados 22.08</div>
+      <div class="kpi-value">$14.1M</div>
+      <div class="kpi-sub">26.3% del total importado</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-accent" style="background:var(--green)"></div>
+      <div class="kpi-label">Operaciones Registradas</div>
+      <div class="kpi-value">3,643</div>
+      <div class="kpi-sub">127 importadores · 48 países</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-accent" style="background:var(--purple)"></div>
+      <div class="kpi-label">Crecimiento 2024 vs 2023</div>
+      <div class="kpi-value" style="color:var(--green)">+96.5%</div>
+      <div class="kpi-sub">en valor FOB USD total</div>
+    </div>
+  </div>
+
+  <div class="g21">
+    <div class="card">
+      <div class="card-hd">Evolución Mensual FOB USD · Fermentadas vs Destilados <span class="card-hd-note">ene 2022 – abr 2026</span></div>
+      <canvas id="mx-c-monthly" height="150"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-hd">Mix 22.06 vs 22.08 por Año</div>
+      <canvas id="mx-c-mix-ann" height="150"></canvas>
+    </div>
+  </div>
+
+  <div class="g3">
+    <div class="card">
+      <div class="card-hd">Top Países de Origen <span class="card-hd-note">FOB USD</span></div>
+      <div class="tbl-scroll" style="max-height:280px">
+        <table class="tbl" id="mx-tbl-country"><!-- JS --></table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-hd">Top Importadores <span class="card-hd-note">FOB USD</span></div>
+      <div class="tbl-scroll" style="max-height:280px">
+        <table class="tbl" id="mx-tbl-importer"><!-- JS --></table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-hd">Top Productos <span class="card-hd-note">FOB USD</span></div>
+      <div class="tbl-scroll" style="max-height:280px">
+        <table class="tbl" id="mx-tbl-product"><!-- JS --></table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     07 · MX TREND
+══════════════════════════════════════════════════════════════ -->
+<div class="page mx-page" id="page-mx-trend">
+  <div class="page-header">
+    <div class="page-header-left">
+      <div class="ph-label blue">B · Datos Aduaneros México</div>
+      <h2>México — Tendencia Temporal 2022–2026</h2>
+    </div>
+    <div class="page-header-right">Línea de tiempo completa · 52 meses</div>
+  </div>
+
+  <div class="kpi-strip kpi-strip-4">
+    <div class="kpi">
+      <div class="kpi-accent" style="background:var(--green)"></div>
+      <div class="kpi-label">2024 vs 2023</div>
+      <div class="kpi-value" style="color:var(--green)">+96.5%</div>
+      <div class="kpi-sub">salto más significativo del período</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-accent" style="background:var(--gold)"></div>
+      <div class="kpi-label">2025 vs 2024</div>
+      <div class="kpi-value" style="color:var(--gold)">+12.8%</div>
+      <div class="kpi-sub">crecimiento consolidado</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-accent" style="background:var(--blue)"></div>
+      <div class="kpi-label">Mejor Mes Histórico</div>
+      <div class="kpi-value" style="font-size:17px">Nov 2024</div>
+      <div class="kpi-sub">$3.16M FOB USD</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-accent" style="background:var(--purple)"></div>
+      <div class="kpi-label">Ritmo Anualizado 2026</div>
+      <div class="kpi-value">~$23.4M</div>
+      <div class="kpi-sub">proyección base ene–abr 2026</div>
+    </div>
+  </div>
+
+  <div class="card full">
+    <div class="card-hd">Línea de Tiempo FOB USD Total — Ene 2022 a Abr 2026</div>
+    <canvas id="mx-c-trend-full" height="130"></canvas>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-hd">FOB Mensual por Categoría — Barras Apiladas</div>
+      <canvas id="mx-c-stacked" height="170"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-hd">FOB Anual por Categoría — Agrupado</div>
+      <canvas id="mx-c-ann-grouped" height="170"></canvas>
+    </div>
+  </div>
+
+  <div class="card full">
+    <div class="card-hd">Resumen Mensual <span class="card-hd-note">FOB USD por categoría</span></div>
+    <div class="tbl-scroll" style="max-height:340px">
+      <table class="tbl">
+        <thead><tr><th>Período</th><th class="num">Fermentadas 22.06</th><th class="num">Destilados 22.08</th><th class="num">Total FOB USD</th><th class="num">Operaciones</th></tr></thead>
+        <tbody id="mx-monthly-body"><!-- JS --></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     08 · MX GEO
+══════════════════════════════════════════════════════════════ -->
+<div class="page mx-page" id="page-mx-geo">
+  <div class="page-header">
+    <div class="page-header-left">
+      <div class="ph-label blue">B · Datos Aduaneros México</div>
+      <h2>México — Origen Geográfico y Aduanas de Entrada</h2>
+    </div>
+    <div class="page-header-right">48 países de origen · 10 puertos/aduanas</div>
+  </div>
+
+  <div class="g21">
+    <div class="card">
+      <div class="card-hd">Top 15 Países de Origen — FOB USD Acumulado <span class="card-hd-note">2022–2026</span></div>
+      <canvas id="mx-c-country-bar" height="200"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-hd">FOB por Puerto / Aduana de Entrada</div>
+      <canvas id="mx-c-aduana" height="200"></canvas>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-hd">Distribución por Estado del Importador <span class="card-hd-note">FOB USD</span></div>
+      <canvas id="mx-c-estado" height="180"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-hd">Ranking de Países de Origen — Detalle</div>
+      <div class="tbl-scroll">
+        <table class="tbl">
+          <thead><tr><th>#</th><th>País</th><th class="num">FOB USD</th><th class="num">Operaciones</th><th class="num">% Total</th></tr></thead>
+          <tbody id="mx-country-full"><!-- JS --></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     09 · MX ACTORES
+══════════════════════════════════════════════════════════════ -->
+<div class="page mx-page" id="page-mx-actores">
+  <div class="page-header">
+    <div class="page-header-left">
+      <div class="ph-label blue">B · Datos Aduaneros México</div>
+      <h2>México — Importadores, Proveedores y Productos</h2>
+    </div>
+  </div>
+
+  <div class="g21">
+    <div class="card">
+      <div class="card-hd">Top 12 Importadores por FOB USD</div>
+      <canvas id="mx-c-importer-bar" height="210"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-hd">Concentración de Mercado</div>
+      <canvas id="mx-c-concentration" height="150"></canvas>
+      <div style="margin-top:12px;font-size:11px;color:var(--tx2);line-height:1.8">
+        <div><span style="color:var(--gold);font-weight:700">Top 3 importadores</span> → 51% del valor total</div>
+        <div><span style="color:var(--blue);font-weight:700">Top 10 importadores</span> → 79% del valor total</div>
+        <div><span style="color:var(--tx2)">127 importadores</span> activos en el período</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-hd">Directorio de Importadores</div>
+      <div class="filter-row">
+        <input type="text" id="srch-imp" placeholder="Buscar importador…" oninput="renderImpDir()">
+      </div>
+      <div class="tbl-scroll" style="max-height:340px">
+        <table class="tbl">
+          <thead><tr><th>#</th><th>Importador</th><th>Estado</th><th class="num">FOB USD</th><th class="num">Ops</th><th class="num">Países</th></tr></thead>
+          <tbody id="mx-imp-dir"><!-- JS --></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-hd">Top Productos por FOB USD</div>
+      <div class="filter-row">
+        <input type="text" id="srch-prod" placeholder="Buscar producto…" oninput="renderProdDir()">
+      </div>
+      <div class="tbl-scroll" style="max-height:340px">
+        <table class="tbl">
+          <thead><tr><th>#</th><th>Producto</th><th>Categoría</th><th class="num">FOB USD</th><th class="num">Ops</th></tr></thead>
+          <tbody id="mx-prod-dir"><!-- JS --></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     10 · MX EXPLORADOR
+══════════════════════════════════════════════════════════════ -->
+<div class="page mx-page" id="page-mx-explorer">
+  <div class="page-header">
+    <div class="page-header-left">
+      <div class="ph-label blue">B · Datos Aduaneros México</div>
+      <h2>México — Explorador de Registros Individuales</h2>
+    </div>
+  </div>
+
+  <div class="filter-row">
+    <input type="text" id="exp-q" placeholder="Buscar por importador, producto, país, proveedor…" oninput="renderExplorer()">
+    <select id="exp-cat" onchange="renderExplorer()">
+      <option value="">Todas las categorías</option>
+      <option value="Fermentadas (22.06)">Fermentadas 22.06</option>
+      <option value="Destilados (22.08)">Destilados 22.08</option>
+    </select>
+    <select id="exp-yr" onchange="renderExplorer()">
+      <option value="">Todos los años</option>
+      <option>2022</option><option>2023</option><option>2024</option><option>2025</option><option>2026</option>
+    </select>
+    <select id="exp-pais" onchange="renderExplorer()" style="min-width:150px">
+      <option value="">Todos los países</option>
+    </select>
+    <span id="exp-count" class="count-chip">—</span>
+  </div>
+
+  <div class="tbl-scroll" style="max-height:540px">
+    <table class="tbl">
+      <thead>
+        <tr><th>Fecha</th><th>Cat.</th><th>Producto</th><th>Importador</th><th>Estado</th><th>País Origen</th><th>Proveedor</th><th class="num">FOB USD</th><th class="num">Litros</th></tr>
+      </thead>
+      <tbody id="exp-body"><!-- JS --></tbody>
+    </table>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<script>
+// ══════════════════════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════════════════════
+let MX = null;       // mexico_aduana.json
+let charts = {};
+
+// ══════════════════════════════════════════════════════════
+//  LOAD
+// ══════════════════════════════════════════════════════════
+fetch('data/mexico_aduana.json')
+  .then(r => r.json())
+  .then(data => {
+    MX = data;
+    buildExplorerFilter();
+    buildImpDir();
+    buildProdDir();
+    initAllCharts();
+    buildStaticContent();
+  });
+
+// ══════════════════════════════════════════════════════════
+//  NAV
+// ══════════════════════════════════════════════════════════
+function nav(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.section-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  el.classList.add('active');
+}
+
+// ══════════════════════════════════════════════════════════
+//  HELPERS
+// ══════════════════════════════════════════════════════════
+const fmt = n => '$' + (n >= 1e6 ? (n/1e6).toFixed(1)+'M' : n >= 1e3 ? Math.round(n/1e3)+'K' : Math.round(n));
+const fmtFull = n => '$' + (+n).toLocaleString('en-US', {maximumFractionDigits:0});
+const fmtN = n => (+n).toLocaleString('en-US', {maximumFractionDigits:0});
+
+function dc(id) { if (charts[id]) { charts[id].destroy(); delete charts[id]; } }
+function mc(id, cfg) { dc(id); const el = document.getElementById(id); if (!el) return; charts[id] = new Chart(el, cfg); }
+
+const PAL = ['#f0c040','#4db8f0','#f04d7a','#4df0a0','#a07af0','#f08040','#40d4c8','#f0f04d','#d04df0','#4df060','#f07a4d','#4d90f0'];
+
+function cBase() {
+  return {
+    responsive:true, maintainAspectRatio:true,
+    animation:{duration:350},
+    plugins:{
+      legend:{display:false},
+      tooltip:{
+        backgroundColor:'#131320', borderColor:'#1f1f32', borderWidth:1,
+        titleColor:'#e8eaf2', bodyColor:'#8890aa', padding:10,
+        callbacks:{label: ctx => ' ' + fmt(ctx.raw)}
+      }
+    }
+  };
+}
+
+function axX() { return { ticks:{color:'#40445a',font:{size:9},maxRotation:45}, grid:{color:'transparent'}, border:{color:'#1f1f32'} }; }
+function axY() { return { ticks:{color:'#8890aa',font:{size:10},callback:v=>v>=1e6?'$'+(v/1e6).toFixed(1)+'M':v>=1e3?'$'+Math.round(v/1e3)+'K':v}, grid:{color:'#131320'}, border:{color:'transparent'} }; }
+function axYpct() { return { ticks:{color:'#8890aa',font:{size:10},callback:v=>v+'%'}, grid:{color:'#131320'}, border:{color:'transparent'} }; }
+
+function groupBy(arr, key) {
+  return arr.reduce((a, r) => { const k = r[key]||'N/D'; if (!a[k]) a[k]=[]; a[k].push(r); return a; }, {});
+}
+function sumBy(arr, key) { return arr.reduce((s,r) => s + (parseFloat(r[key])||0), 0); }
+
+// ══════════════════════════════════════════════════════════
+//  STATIC DATA
+// ══════════════════════════════════════════════════════════
+const COMPETITORS = [
+  { id:'P01', brand:'Like Mango', maker:'Quala S.A.', country:'Colombia', base:'Destilado (Vodka)', abv:4.0, pkg:'Botella PET', vol:300, sabor:'Mango', tier:'Económico', price:1.00 },
+  { id:'P02', brand:'Like Manzana Verde', maker:'Quala S.A.', country:'Colombia', base:'Destilado (Vodka)', abv:4.0, pkg:'Botella PET', vol:300, sabor:'Manzana Verde', tier:'Económico', price:0.75 },
+  { id:'P03', brand:'Smirnoff Ice', maker:'Diageo', country:'Global', base:'Malta/Destilado', abv:4.5, pkg:'Botella Vidrio', vol:275, sabor:'Limón', tier:'Medio', price:1.50 },
+  { id:'P04', brand:'Skol Beats Spirit', maker:'Ambev', country:'Brasil', base:'Malta/Cerveza', abv:7.9, pkg:'Botella Vidrio', vol:330, sabor:'Manzana/Limón', tier:'Premium', price:2.00 },
+  { id:'P05', brand:"Mike's Hard Lemonade", maker:'AB InBev', country:'Global', base:'Malta', abv:5.0, pkg:'Lata', vol:350, sabor:'Limonada', tier:'Medio', price:1.40 },
+  { id:'P06', brand:'Mistral Ice Blend', maker:'CCU', country:'Chile', base:'Destilado (Pisco)', abv:7.0, pkg:'Botella Vidrio', vol:275, sabor:'Lima Limón', tier:'Premium', price:1.80 },
+  { id:'P07', brand:'Smirnoff Smash', maker:'Diageo/FIFCO', country:'México', base:'Destilado Vodka', abv:9.0, pkg:'Lata', vol:350, sabor:'Frutal', tier:'Premium', price:2.50 },
+  { id:'P08', brand:'BACARDÍ + Coca-Cola', maker:'Bacardi/Coca-Cola', country:'Global', base:'Ron Destilado', abv:5.0, pkg:'Lata', vol:330, sabor:'Cola/Ron', tier:'Medio', price:2.00 },
+  { id:'P09', brand:'Svns Hard 7Up', maker:'AB InBev/PepsiCo', country:'Global', base:'Malta', abv:7.0, pkg:'Lata', vol:355, sabor:'7Up', tier:'Medio', price:1.80 },
+];
+
+const TAXES = [
+  { id:'TAX01', ctry:'MX', base:'Destilado (≤14° GL)', hs:'2208.90.90', av:9, esp:'26.5% IEPS', sugar:'$3.08 MXN/L', iva:16, src:'Ley IEPS' },
+  { id:'TAX02', ctry:'BR', base:'Destilado Mixto', hs:'2208.90.00', av:18, esp:'19.5% IPI', sugar:'N/A', iva:11.75, src:'Receita Federal' },
+  { id:'TAX03', ctry:'CO', base:'Destilado (Aperitivo)', hs:'2208.90.90', av:9, esp:'$342 COP/gr + 25% AdVal', sugar:'N/A', iva:5, src:'Ley 1816/2016' },
+  { id:'TAX04', ctry:'CO', base:'Malta (Mezclas)', hs:'2206.00.00', av:0, esp:'$115.1 COP/300cc', sugar:'N/A', iva:19, src:'Ley 223' },
+  { id:'TAX05', ctry:'EC', base:'Destilado', hs:'2208.90.90', av:'Variable', esp:'USD 10.41/LAL + AdVal 300%', sugar:'$0.18/100g', iva:15, src:'SRI Ecuador' },
+  { id:'TAX06', ctry:'CL', base:'Destilado', hs:'2208.90.90', av:6, esp:'31.5% ILA', sugar:'N/A', iva:19, src:'SII Chile' },
+  { id:'TAX07', ctry:'CL', base:'Malta/Cerveza', hs:'2206.00.00', av:0, esp:'20.5% ILA', sugar:'N/A', iva:19, src:'SII Chile' },
+  { id:'TAX08', ctry:'PE', base:'Destilado (Pisco)', hs:'2208.20.21', av:6, esp:'S/2.48/Litro ISC', sugar:'N/A', iva:18, src:'SUNAT' },
+  { id:'TAX09', ctry:'PE', base:'Malta (Cerveza)', hs:'2203.00.00', av:6, esp:'S/2.51/Litro ISC', sugar:'N/A', iva:18, src:'SUNAT' },
+];
+
+const MARKETS = [
+  { id:'BR', flag:'🇧🇷', name:'Brasil', cagr:'14.39%', cagrN:14.39, cagr_seg:'RTD Cocktails', pop:'215M', litros_cap:7.8, note:'Mayor CAGR regional. Ambev domina con Skol Beats Spirit.', color:'#4df0a0' },
+  { id:'MX', flag:'🇲🇽', name:'México', cagr:'5.0%', cagrN:5.0, cagr_seg:'RTD Volumen', pop:'130M', litros_cap:null, note:'64% consumidores jóvenes. IEPS encarece importados.', color:'#f0c040' },
+  { id:'CO', flag:'🇨🇴', name:'Colombia', cagr:'~12%', cagrN:12, cagr_seg:'RTD General', pop:'52M', litros_cap:null, note:'Like (Quala) reconfiguró precios. Doble dígito de crecimiento.', color:'#f04d7a' },
+  { id:'PE', flag:'🇵🇪', name:'Perú', cagr:'Constante', cagrN:4, cagr_seg:'RTD + Wellness', pop:'34M', litros_cap:null, note:'Sustitución gradual de cerveza. Lata 473ml gana share.', color:'#4db8f0' },
+  { id:'CL', flag:'🇨🇱', name:'Chile', cagr:'Moderado', cagrN:3.5, cagr_seg:'Premium Destilados', pop:'19M', litros_cap:null, note:'ILA 31.5%. Pisco como base premium local.', color:'#a07af0' },
+  { id:'EC', flag:'🇪🇨', name:'Ecuador', cagr:'4.99%', cagrN:4.99, cagr_seg:'RTD General', pop:'18M', litros_cap:null, note:'ICE USD 10.41/LAL. Exoneración temporal Mundial 2026.', color:'#f08040' },
+];
+
+// ══════════════════════════════════════════════════════════
+//  INIT ALL CHARTS
+// ══════════════════════════════════════════════════════════
+function initAllCharts() {
+  buildLatamCharts();
+  buildMxCharts();
+}
+
+// ══════════════════════════════════════════════════════════
+//  LATAM CHARTS
+// ══════════════════════════════════════════════════════════
+function buildLatamCharts() {
+  // 01 — Global projection line
+  const years = [2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034];
+  const proj = years.map(y => +(24.2 * Math.pow(1.059, y-2024)).toFixed(2));
+  mc('c-global-proj', {
+    type:'line',
+    data:{ labels:years, datasets:[{ data:proj, borderColor:'#f0c040', backgroundColor:'rgba(240,192,64,0.06)', fill:true, tension:0.4, pointRadius:3, pointBackgroundColor:'#f0c040', borderWidth:2 }] },
+    options:{ ...cBase(), scales:{ x:{...axX()}, y:{...axY()} } }
+  });
+
+  // 01 — Base donut
+  mc('c-base-donut', {
+    type:'doughnut',
+    data:{ labels:['Destilados','Malta/Fermentadas','Vino/Aperitivos','Otros'], datasets:[{ data:[47.8,31.2,14.5,6.5], backgroundColor:['#f0c040','#4db8f0','#a07af0','#40445a'], borderWidth:0 }] },
+    options:{ ...cBase(), cutout:'62%', plugins:{ legend:{display:false}, tooltip:{callbacks:{label:ctx=>' '+ctx.raw+'%'}} } }
+  });
+
+  // 01 — CAGR LATAM
+  mc('c-cagr-latam', {
+    type:'bar',
+    data:{ labels:MARKETS.map(m=>m.flag+' '+m.name), datasets:[{ data:MARKETS.map(m=>m.cagrN), backgroundColor:MARKETS.map(m=>m.color), borderRadius:3 }] },
+    options:{ ...cBase(), scales:{ x:{...axX()}, y:{...axYpct(),max:18} }, plugins:{...cBase().plugins, tooltip:{...cBase().plugins.tooltip, callbacks:{label:ctx=>' '+ctx.raw+'% CAGR'}}} }
+  });
+
+  // 01 — Market size proxy
+  mc('c-mkt-size', {
+    type:'bar',
+    data:{ labels:['Brasil','México','Colombia','Perú','Chile','Ecuador'], datasets:[{ label:'Pop (M)', data:[215,130,52,34,19,18], backgroundColor:'rgba(77,184,240,0.2)', borderRadius:2, yAxisID:'y' }, { label:'CAGR %', data:[14.39,5,12,4,3.5,4.99], backgroundColor:'rgba(240,192,64,0.8)', borderRadius:2, yAxisID:'y2' }] },
+    options:{ ...cBase(), scales:{ x:{...axX()}, y:{...axY(), position:'left'}, y2:{position:'right', ticks:{color:'#f0c040',font:{size:9},callback:v=>v+'%'}, grid:{display:false}, border:{display:false}} }, plugins:{...cBase().plugins, legend:{display:true, labels:{color:'#8890aa',boxWidth:10,font:{size:10}}}} }
+  });
+
+  // 02 — CAGR bar
+  mc('c-cagr-bar', {
+    type:'bar',
+    data:{ labels:MARKETS.map(m=>m.flag+' '+m.name), datasets:[{ data:MARKETS.map(m=>m.cagrN), backgroundColor:MARKETS.map(m=>m.color), borderRadius:3 }] },
+    options:{ ...cBase(), indexAxis:'y', scales:{ x:{...axYpct(),max:18}, y:{...axX()} }, plugins:{...cBase().plugins, tooltip:{...cBase().plugins.tooltip, callbacks:{label:ctx=>' '+ctx.raw+'% CAGR'}}} }
+  });
+
+  // 02 — Market value bar
+  mc('c-mktval-bar', {
+    type:'bar',
+    data:{ labels:['Brasil (RTD Cócteles 2036)','Global RTD 2034','Global RTD Cocktails 2036'], datasets:[{ data:[null,42.9,9.44], backgroundColor:'rgba(240,192,64,0.7)', borderRadius:3 }, { data:[null,24.2,2.3], backgroundColor:'rgba(77,184,240,0.4)', borderRadius:3, label:'Base' }] },
+    options:{ ...cBase(), scales:{ x:{...axX()}, y:{ticks:{color:'#8890aa',font:{size:10},callback:v=>'$'+v+'B'}, grid:{color:'#131320'}, border:{color:'transparent'}} }, plugins:{...cBase().plugins, legend:{display:false}, tooltip:{...cBase().plugins.tooltip, callbacks:{label:ctx=>' $'+ctx.raw+'B USD'}}} }
+  });
+
+  // 03 — Competitor scatter
+  const scatterData = COMPETITORS.map(c => ({ x:c.abv, y:c.price, label:c.brand }));
+  mc('c-comp-scatter', {
+    type:'scatter',
+    data:{ datasets:[{ data:scatterData, backgroundColor:PAL, pointRadius:8, pointHoverRadius:10 }] },
+    options:{ ...cBase(), scales:{ x:{title:{display:true,text:'ABV %',color:'#40445a',font:{size:10}}, min:3,max:12, ticks:{color:'#8890aa',font:{size:10}}, grid:{color:'#131320'}, border:{color:'#1f1f32'}}, y:{title:{display:true,text:'PVP USD',color:'#40445a',font:{size:10}}, min:0,max:3, ticks:{color:'#8890aa',font:{size:10},callback:v=>'$'+v}, grid:{color:'#131320'}, border:{color:'transparent'}} },
+    plugins:{ legend:{display:false}, tooltip:{backgroundColor:'#131320',borderColor:'#1f1f32',borderWidth:1,titleColor:'#e8eaf2',bodyColor:'#8890aa',padding:10, callbacks:{ title: items => items[0].raw.label, label: ctx => ' ABV: '+ctx.raw.x+'%  |  PVP: $'+ctx.raw.y }} } }
+  });
+
+  // 03 — Base MX proxy (from aduanas data)
+  mc('c-base-mx', {
+    type:'doughnut',
+    data:{ labels:['Fermentadas 22.06','Destilados 22.08'], datasets:[{ data:[73.7,26.3], backgroundColor:['#4db8f0','#f04d7a'], borderWidth:0 }] },
+    options:{ ...cBase(), cutout:'60%', plugins:{ legend:{position:'right',labels:{color:'#8890aa',boxWidth:10,font:{size:11}}}, tooltip:{...cBase().plugins.tooltip, callbacks:{label:ctx=>' '+ctx.raw+'% del valor FOB'}} } }
+  });
+
+  // 04 — Tax bar
+  const ctries = ['México','Brasil','Colombia\n(Aperit.)','Colombia\n(Malta)','Ecuador','Chile\n(Destil.)','Chile\n(Malta)','Perú'];
+  const avRates = [9,18,9,0,0,6,0,6];
+  const espRates = [26.5,19.5,25,12,30,31.5,20.5,16];
+  const ivaRates = [16,11.75,5,19,15,19,19,18];
+  mc('c-tax-bar', {
+    type:'bar',
+    data:{ labels:ctries, datasets:[
+      { label:'Arancel Ad Valorem %', data:avRates, backgroundColor:'rgba(77,184,240,0.7)', borderRadius:2 },
+      { label:'Impuesto Especial %', data:espRates, backgroundColor:'rgba(240,77,122,0.7)', borderRadius:2 },
+      { label:'IVA/IGV %', data:ivaRates, backgroundColor:'rgba(240,192,64,0.7)', borderRadius:2 }
+    ]},
+    options:{ ...cBase(), scales:{ x:{stacked:true,...axX()}, y:{stacked:true,...axYpct()} }, plugins:{...cBase().plugins, legend:{display:true,labels:{color:'#8890aa',boxWidth:10,font:{size:10}}}} }
+  });
+
+  // 05 — Frequency
+  mc('c-freq', {
+    type:'line',
+    data:{ labels:['2022','2023','2024','2025'], datasets:[{ data:[39,44,50,55], borderColor:'#4df0a0', backgroundColor:'rgba(77,240,160,0.08)', fill:true, tension:0.4, pointRadius:5, pointBackgroundColor:'#4df0a0', borderWidth:2 }] },
+    options:{ ...cBase(), scales:{ x:{...axX()}, y:{...axYpct(), min:30,max:65} }, plugins:{...cBase().plugins, tooltip:{...cBase().plugins.tooltip, callbacks:{label:ctx=>' '+ctx.raw+'% consumidores semanales'}}} }
+  });
+
+  // 05 — ABV distribution
+  mc('c-abv', {
+    type:'bar',
+    data:{ labels:['<5% ABV','5–7% ABV','7–10% ABV','>10% ABV'],
+      datasets:[
+        { label:'2021', data:[57,18,25,0], backgroundColor:'rgba(77,184,240,0.3)', borderRadius:2 },
+        { label:'2024', data:[49,22,29,0], backgroundColor:'rgba(240,192,64,0.7)', borderRadius:2 }
+      ]},
+    options:{ ...cBase(), scales:{ x:{...axX()}, y:{...axYpct(),max:65} }, plugins:{...cBase().plugins, legend:{display:true,labels:{color:'#8890aa',boxWidth:10,font:{size:10}}}, tooltip:{...cBase().plugins.tooltip, callbacks:{label:ctx=>' '+ctx.raw+'% de lanzamientos'}}} }
+  });
+
+  // 05 — Attributes radar-style bar
+  mc('c-attrs', {
+    type:'bar',
+    data:{ labels:['Bajo calórico','Sin azúcar','Portabilidad','Sabor local','Premium percibido','Sostenibilidad'],
+      datasets:[
+        { label:'Gen Z (18–24)', data:[82,71,88,65,55,70], backgroundColor:'rgba(240,77,122,0.6)', borderRadius:2 },
+        { label:'Millennials (25–38)', data:[74,60,70,50,72,60], backgroundColor:'rgba(77,184,240,0.6)', borderRadius:2 }
+      ]},
+    options:{ ...cBase(), scales:{ x:{...axX()}, y:{...axYpct(),max:100} }, plugins:{...cBase().plugins, legend:{display:true,labels:{color:'#8890aa',boxWidth:10,font:{size:10}}}, tooltip:{...cBase().plugins.tooltip, callbacks:{label:ctx=>' '+ctx.raw+'% importancia'}}} }
+  });
+
+  // 05 — Channel donut
+  mc('c-channel', {
+    type:'doughnut',
+    data:{ labels:['Off-trade Moderno','On-trade (bares/rest.)','Conveniencia','eCommerce','Otros'], datasets:[{ data:[48.1,20,14,9,8.9], backgroundColor:['#f0c040','#4db8f0','#f04d7a','#4df0a0','#40445a'], borderWidth:0 }] },
+    options:{ ...cBase(), cutout:'55%', plugins:{ legend:{position:'right',labels:{color:'#8890aa',boxWidth:10,font:{size:10}}}, tooltip:{...cBase().plugins.tooltip, callbacks:{label:ctx=>' '+ctx.raw+'%'}} } }
+  });
+}
+
+// ══════════════════════════════════════════════════════════
+//  MX CHARTS
+// ══════════════════════════════════════════════════════════
+function buildMxCharts() {
+  if (!MX) return;
+  const monthly = MX.monthly;
+  const fechas = [...new Set(monthly.map(r => r.fecha))].sort();
+
+  const fermByF = f => { const r = monthly.find(m => m.fecha===f && m.CATEGORIA==='Fermentadas (22.06)'); return r ? r.fob_usd : 0; };
+  const destByF = f => { const r = monthly.find(m => m.fecha===f && m.CATEGORIA==='Destilados (22.08)'); return r ? r.fob_usd : 0; };
+  const fermD = fechas.map(fermByF);
+  const destD = fechas.map(destByF);
+  const totalD = fechas.map(f => fermByF(f) + destByF(f));
+
+  // MX Overview monthly
+  mc('mx-c-monthly', {
+    type:'line',
+    data:{ labels:fechas, datasets:[
+      { label:'Fermentadas 22.06', data:fermD, borderColor:'#4db8f0', backgroundColor:'rgba(77,184,240,0.07)', fill:true, tension:0.3, pointRadius:0, borderWidth:1.5 },
+      { label:'Destilados 22.08', data:destD, borderColor:'#f04d7a', backgroundColor:'rgba(240,77,122,0.07)', fill:true, tension:0.3, pointRadius:0, borderWidth:1.5 }
+    ]},
+    options:{ ...cBase(), scales:{ x:{...axX()}, y:{...axY()} }, plugins:{...cBase().plugins, legend:{display:true,labels:{color:'#8890aa',boxWidth:10,font:{size:10}}}} }
+  });
+
+  // MX annual mix bars
+  const years = ['2022','2023','2024','2025','2026'];
+  const annF = y => { const r = MX.annual.find(a => String(a.AÑO_FULL)===y && a.CATEGORIA==='Fermentadas (22.06)'); return r ? r.fob_usd : 0; };
+  const annD = y => { const r = MX.annual.find(a => String(a.AÑO_FULL)===y && a.CATEGORIA==='Destilados (22.08)'); return r ? r.fob_usd : 0; };
+  mc('mx-c-mix-ann', {
+    type:'bar',
+    data:{ labels:years.map(y=>y==='2026'?'2026*':y), datasets:[
+      { label:'Fermentadas 22.06', data:years.map(annF), backgroundColor:'rgba(77,184,240,0.7)', borderRadius:2, stack:'s' },
+      { label:'Destilados 22.08', data:years.map(annD), backgroundColor:'rgba(240,77,122,0.7)', borderRadius:2, stack:'s' }
+    ]},
+    options:{ ...cBase(), scales:{ x:{stacked:true,...axX()}, y:{stacked:true,...axY()} }, plugins:{...cBase().plugins, legend:{display:true,labels:{color:'#8890aa',boxWidth:10,font:{size:10}}}} }
+  });
+
+  // MX Trend full
+  mc('mx-c-trend-full', {
+    type:'line',
+    data:{ labels:fechas, datasets:[{ data:totalD, borderColor:'#4db8f0', backgroundColor:'rgba(77,184,240,0.06)', fill:true, tension:0.3, pointRadius:2, pointBackgroundColor:'#4db8f0', borderWidth:2 }] },
+    options:{ ...cBase(), scales:{ x:{...axX()}, y:{...axY()} }, plugins:{...cBase().plugins, legend:{display:false}, tooltip:{...cBase().plugins.tooltip, callbacks:{label:ctx=>' '+fmt(ctx.raw)}}} }
+  });
+
+  // MX stacked
+  mc('mx-c-stacked', {
+    type:'bar',
+    data:{ labels:fechas, datasets:[
+      { label:'Fermentadas', data:fermD, backgroundColor:'rgba(77,184,240,0.7)', borderRadius:1, stack:'s' },
+      { label:'Destilados', data:destD, backgroundColor:'rgba(240,77,122,0.7)', borderRadius:1, stack:'s' }
+    ]},
+    options:{ ...cBase(), scales:{ x:{stacked:true,...axX()}, y:{stacked:true,...axY()} }, plugins:{...cBase().plugins, legend:{display:true,labels:{color:'#8890aa',boxWidth:10,font:{size:10}}}} }
+  });
+
+  // MX annual grouped
+  mc('mx-c-ann-grouped', {
+    type:'bar',
+    data:{ labels:years.map(y=>y==='2026'?'2026*':y), datasets:[
+      { label:'Fermentadas 22.06', data:years.map(annF), backgroundColor:'#4db8f0', borderRadius:3 },
+      { label:'Destilados 22.08', data:years.map(annD), backgroundColor:'#f04d7a', borderRadius:3 }
+    ]},
+    options:{ ...cBase(), scales:{ x:{...axX()}, y:{...axY()} }, plugins:{...cBase().plugins, legend:{display:true,labels:{color:'#8890aa',boxWidth:10,font:{size:10}}}} }
+  });
+
+  // MX Country bar (horizontal)
+  const ct = MX.country_total.slice(0,15);
+  mc('mx-c-country-bar', {
+    type:'bar',
+    data:{ labels:ct.map(r=>r['PAÍS DE ORIGEN']), datasets:[{ data:ct.map(r=>r.fob_usd), backgroundColor:ct.map((_,i)=>PAL[i%PAL.length]), borderRadius:2 }] },
+    options:{ ...cBase(), indexAxis:'y', scales:{ x:{...axY()}, y:{...axX()} }, plugins:{...cBase().plugins} }
+  });
+
+  // MX Aduana
+  const adu = MX.aduana.slice(0,7);
+  mc('mx-c-aduana', {
+    type:'bar',
+    data:{ labels:adu.map(r=>r['ADUANA, ESTADO, PUERTO']), datasets:[{ data:adu.map(r=>r.fob_usd), backgroundColor:PAL.slice(0,7), borderRadius:2 }] },
+    options:{ ...cBase(), indexAxis:'y', scales:{ x:{...axY()}, y:{...axX()} }, plugins:{...cBase().plugins} }
+  });
+
+  // MX Estado pie
+  const est = MX.estado.slice(0,7);
+  mc('mx-c-estado', {
+    type:'doughnut',
+    data:{ labels:est.map(r=>r['ESTADO DEL IMPORTADOR']), datasets:[{ data:est.map(r=>r.fob_usd), backgroundColor:PAL.slice(0,7), borderWidth:1, borderColor:'#09090f' }] },
+    options:{ ...cBase(), cutout:'50%', plugins:{ legend:{position:'right',labels:{color:'#8890aa',boxWidth:10,font:{size:10}}}, tooltip:{...cBase().plugins.tooltip, callbacks:{label:ctx=>' '+fmt(ctx.raw)}} } }
+  });
+
+  // MX Importer bar
+  const imp = MX.importer.slice(0,12);
+  mc('mx-c-importer-bar', {
+    type:'bar',
+    data:{ labels:imp.map(r=>(r.IMPORTADOR||'').length>28?r.IMPORTADOR.substring(0,28)+'…':r.IMPORTADOR), datasets:[{ data:imp.map(r=>r.fob_usd), backgroundColor:imp.map((_,i)=>PAL[i%PAL.length]), borderRadius:2 }] },
+    options:{ ...cBase(), indexAxis:'y', scales:{ x:{...axY()}, y:{...axX()} }, plugins:{...cBase().plugins} }
+  });
+
+  // MX Concentration
+  const totalFob = sumBy(MX.importer, 'fob_usd');
+  const top3 = sumBy(MX.importer.slice(0,3), 'fob_usd');
+  const top10 = sumBy(MX.importer.slice(0,10), 'fob_usd');
+  mc('mx-c-concentration', {
+    type:'doughnut',
+    data:{ labels:['Top 3','Top 4–10','Resto'], datasets:[{ data:[top3,top10-top3,totalFob-top10], backgroundColor:['#f0c040','#4db8f0','#1f1f32'], borderWidth:1,borderColor:'#09090f' }] },
+    options:{ ...cBase(), cutout:'60%', plugins:{ legend:{position:'right',labels:{color:'#8890aa',boxWidth:10,font:{size:10}}}, tooltip:{...cBase().plugins.tooltip, callbacks:{label:ctx=>' '+fmt(ctx.raw)+' ('+((ctx.raw/totalFob)*100).toFixed(1)+'%)'}} } }
+  });
+
+  // Build tables
+  buildMxTables();
+}
+
+// ══════════════════════════════════════════════════════════
+//  MX TABLES
+// ══════════════════════════════════════════════════════════
+function buildMxTables() {
+  if (!MX) return;
+  const totalFob = sumBy(MX.country_total, 'fob_usd');
+
+  // Country overview top5
+  const tC = document.getElementById('mx-tbl-country');
+  if (tC) {
+    tC.innerHTML = '<thead><tr><th>#</th><th>País</th><th class="num">FOB USD</th></tr></thead>';
+    const b = document.createElement('tbody');
+    MX.country_total.slice(0,8).forEach((r,i) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${i+1}</td><td>${r['PAÍS DE ORIGEN']}</td><td class="num">${fmt(r.fob_usd)}</td>`;
+      b.appendChild(tr);
+    });
+    tC.appendChild(b);
+  }
+
+  // Importer overview
+  const tI = document.getElementById('mx-tbl-importer');
+  if (tI) {
+    tI.innerHTML = '<thead><tr><th>#</th><th>Importador</th><th class="num">FOB USD</th></tr></thead>';
+    const b = document.createElement('tbody');
+    MX.importer.slice(0,8).forEach((r,i) => {
+      const name = (r.IMPORTADOR||'').length>26 ? r.IMPORTADOR.substring(0,26)+'…' : r.IMPORTADOR;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${i+1}</td><td title="${r.IMPORTADOR}">${name}</td><td class="num">${fmt(r.fob_usd)}</td>`;
+      b.appendChild(tr);
+    });
+    tI.appendChild(b);
+  }
+
+  // Product overview
+  const tP = document.getElementById('mx-tbl-product');
+  if (tP) {
+    tP.innerHTML = '<thead><tr><th>#</th><th>Producto</th><th class="num">FOB USD</th></tr></thead>';
+    const b = document.createElement('tbody');
+    MX.product.slice(0,8).forEach((r,i) => {
+      const name = (r.PRODUCTO_CLEAN||'').length>24 ? r.PRODUCTO_CLEAN.substring(0,24)+'…' : r.PRODUCTO_CLEAN;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${i+1}</td><td title="${r.PRODUCTO_CLEAN}">${name}</td><td class="num">${fmt(r.fob_usd)}</td>`;
+      b.appendChild(tr);
+    });
+    tP.appendChild(b);
+  }
+
+  // Monthly trend table
+  const monthly = MX.monthly;
+  const fechas = [...new Set(monthly.map(r=>r.fecha))].sort().reverse();
+  const mb = document.getElementById('mx-monthly-body');
+  if (mb) {
+    mb.innerHTML = '';
+    fechas.forEach(f => {
+      const fr = monthly.find(r=>r.fecha===f&&r.CATEGORIA==='Fermentadas (22.06)');
+      const dr = monthly.find(r=>r.fecha===f&&r.CATEGORIA==='Destilados (22.08)');
+      const fv = fr?fr.fob_usd:0, dv = dr?dr.fob_usd:0;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${f}</td><td class="num">${fv?fmtFull(fv):'—'}</td><td class="num">${dv?fmtFull(dv):'—'}</td><td class="num" style="color:var(--blue);font-weight:700">${fmtFull(fv+dv)}</td><td class="num">${(fr?fr.ops:0)+(dr?dr.ops:0)}</td>`;
+      mb.appendChild(tr);
+    });
+  }
+
+  // Geo country full
+  const gcb = document.getElementById('mx-country-full');
+  if (gcb) {
+    gcb.innerHTML = '';
+    MX.country_total.forEach((r,i) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${i+1}</td><td>${r['PAÍS DE ORIGEN']}</td><td class="num">${fmtFull(r.fob_usd)}</td><td class="num">${fmtN(r.ops)}</td><td class="num">${((r.fob_usd/totalFob)*100).toFixed(1)}%</td>`;
+      gcb.appendChild(tr);
+    });
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+//  STATIC CONTENT (Competitors, Taxes)
+// ══════════════════════════════════════════════════════════
+function buildStaticContent() {
+  // Market cards
+  const mc_el = document.getElementById('market-cards');
+  if (mc_el) {
+    mc_el.innerHTML = MARKETS.map(m => `
+      <div class="market-card" onclick="showMarketDetail('${m.id}')" id="mc-${m.id}">
+        <div class="mc-flag">${m.flag}</div>
+        <div class="mc-country">${m.name}</div>
+        <div class="mc-cagr" style="color:${m.color}">${m.cagr}</div>
+        <div class="mc-label">CAGR RTD</div>
+      </div>`).join('');
+  }
+
+  // Competitor cards
+  const cc = document.getElementById('comp-cards');
+  if (cc) {
+    const tiers = { 'Económico': 'b-econ', 'Medio': 'b-med', 'Premium': 'b-prem' };
+    cc.innerHTML = COMPETITORS.slice(0,9).map(c => `
+      <div class="comp-card">
+        <div class="cc-brand">${c.brand}</div>
+        <div class="cc-maker">${c.maker} · ${c.country}</div>
+        <div class="cc-row"><span class="cc-key">Base</span><span class="cc-val">${c.base}</span></div>
+        <div class="cc-row"><span class="cc-key">ABV</span><span class="cc-val">${c.abv}%</span></div>
+        <div class="cc-row"><span class="cc-key">Formato</span><span class="cc-val">${c.pkg} ${c.vol}ml</span></div>
+        <div class="cc-row"><span class="cc-key">Sabor</span><span class="cc-val">${c.sabor}</span></div>
+        <div class="cc-row"><span class="cc-key">Tier</span><span class="cc-val"><span class="badge ${tiers[c.tier]||'b-med'}">${c.tier}</span></span></div>
+        <div class="cc-price">$${c.price.toFixed(2)} USD</div>
+      </div>`).join('');
+  }
+
+  // Competitor table
+  const ctb = document.getElementById('comp-table-body');
+  if (ctb) {
+    const tiers = { 'Económico':'b-econ','Medio':'b-med','Premium':'b-prem' };
+    ctb.innerHTML = COMPETITORS.map(c => `
+      <tr>
+        <td><strong>${c.brand}</strong></td><td>${c.maker}</td>
+        <td>${c.base}</td><td class="num">${c.abv}%</td>
+        <td class="num">${c.vol}ml</td><td>${c.sabor}</td>
+        <td><span class="badge ${tiers[c.tier]||'b-med'}">${c.tier}</span></td>
+        <td class="num">$${c.price.toFixed(2)}</td>
+        <td>${c.country}</td>
+      </tr>`).join('');
+  }
+
+  // Tax stack visual
+  const ts = document.getElementById('tax-stack');
+  if (ts) {
+    const taxData = [
+      { ctry:'México', av:9, esp:26.5, iva:16 },
+      { ctry:'Brasil', av:18, esp:19.5, iva:11.75 },
+      { ctry:'Colombia', av:9, esp:25, iva:5 },
+      { ctry:'Ecuador', av:5, esp:30, iva:15 },
+      { ctry:'Chile', av:6, esp:31.5, iva:19 },
+      { ctry:'Perú', av:6, esp:16, iva:18 },
+    ];
+    ts.innerHTML = taxData.map(r => {
+      const total = r.av + r.esp + r.iva;
+      const maxTotal = 65;
+      return `
+        <div class="tax-row">
+          <span class="tax-country">${r.ctry}</span>
+          <div class="tax-bar-wrap">
+            <div class="tax-segment" style="width:${r.av/maxTotal*100}%;background:#4db8f0" title="Arancel ${r.av}%"></div>
+            <div class="tax-segment" style="width:${r.esp/maxTotal*100}%;background:#f04d7a" title="Impuesto Especial ${r.esp}%"></div>
+            <div class="tax-segment" style="width:${r.iva/maxTotal*100}%;background:#f0c040" title="IVA ${r.iva}%"></div>
+          </div>
+          <span class="tax-total">${total.toFixed(1)}%</span>
+        </div>`;
+    }).join('');
+    ts.insertAdjacentHTML('afterbegin','<div style="display:flex;gap:12px;margin-bottom:10px;font-size:9.5px;color:var(--tx2)"><span><span style="display:inline-block;width:8px;height:8px;background:#4db8f0;border-radius:1px;margin-right:4px"></span>Arancel</span><span><span style="display:inline-block;width:8px;height:8px;background:#f04d7a;border-radius:1px;margin-right:4px"></span>Impuesto Especial</span><span><span style="display:inline-block;width:8px;height:8px;background:#f0c040;border-radius:1px;margin-right:4px"></span>IVA/IGV</span></div>');
+  }
+
+  // Tax table
+  const ttb = document.getElementById('tax-table-body');
+  if (ttb) {
+    ttb.innerHTML = TAXES.map(t => `
+      <tr>
+        <td><code style="color:var(--tx3);font-size:10px">${t.id}</code></td>
+        <td><strong>${t.ctry}</strong></td><td>${t.base}</td>
+        <td><code style="color:var(--blue);font-size:10px">${t.hs}</code></td>
+        <td class="num">${t.av}%</td><td style="color:var(--tx2)">${t.esp}</td>
+        <td class="num">${t.iva}%</td>
+        <td style="color:var(--tx3);font-size:10px">${t.src}</td>
+      </tr>`).join('');
+  }
+}
+
+// Market detail panel
+function showMarketDetail(id) {
+  document.querySelectorAll('.market-card').forEach(c => c.classList.remove('selected'));
+  const card = document.getElementById('mc-'+id);
+  if (card) card.classList.add('selected');
+  const m = MARKETS.find(m => m.id===id);
+  if (!m) return;
+  const detail = document.getElementById('market-detail');
+  if (!detail) return;
+  detail.innerHTML = `
+    <div class="insight" style="margin-bottom:16px">
+      <strong>${m.flag} ${m.name} — CAGR RTD: ${m.cagr} (${m.cagr_seg})</strong><br>
+      Población: ${m.pop} hab. ${m.litros_cap ? ' · Consumo destilados: '+m.litros_cap+'L/cápita' : ''}<br>
+      ${m.note}
+    </div>`;
+}
+
+// ══════════════════════════════════════════════════════════
+//  IMPORTER & PRODUCT DIRS
+// ══════════════════════════════════════════════════════════
+let impData = [], prodData = [];
+
+function buildImpDir() {
+  if (!MX) return;
+  const byImp = groupBy(MX.facts, 'importador');
+  impData = Object.entries(byImp)
+    .map(([k,v]) => ({ name:k, fob:sumBy(v,'fob_usd'), ops:v.length, estado:v[0].estado||'—', paises:new Set(v.map(r=>r.pais_origen)).size }))
+    .sort((a,b) => b.fob-a.fob);
+  renderImpDir();
+}
+
+function buildProdDir() {
+  if (!MX) return;
+  const byProd = groupBy(MX.facts, 'producto');
+  prodData = Object.entries(byProd)
+    .map(([k,v]) => ({ name:k, fob:sumBy(v,'fob_usd'), ops:v.length, cat:v[0].categoria||'' }))
+    .sort((a,b) => b.fob-a.fob);
+  renderProdDir();
+}
+
+function renderImpDir() {
+  const q = (document.getElementById('srch-imp')?.value||'').toLowerCase();
+  const filtered = q ? impData.filter(r=>r.name.toLowerCase().includes(q)||r.estado.toLowerCase().includes(q)) : impData;
+  const el = document.getElementById('mx-imp-dir');
+  if (!el) return;
+  el.innerHTML = filtered.map((r,i) => `<tr><td>${i+1}</td><td title="${r.name}">${r.name.length>28?r.name.substring(0,28)+'…':r.name}</td><td>${r.estado}</td><td class="num">${fmtFull(r.fob)}</td><td class="num">${r.ops}</td><td class="num">${r.paises}</td></tr>`).join('');
+}
+
+function renderProdDir() {
+  const q = (document.getElementById('srch-prod')?.value||'').toLowerCase();
+  const filtered = q ? prodData.filter(r=>r.name.toLowerCase().includes(q)) : prodData;
+  const el = document.getElementById('mx-prod-dir');
+  if (!el) return;
+  const cats = { 'Fermentadas (22.06)':'b-ferm', 'Destilados (22.08)':'b-dest' };
+  el.innerHTML = filtered.map((r,i) => `<tr><td>${i+1}</td><td title="${r.name}">${r.name.length>26?r.name.substring(0,26)+'…':r.name}</td><td><span class="badge ${cats[r.cat]||''}">${r.cat.includes('Ferm')?'22.06':'22.08'}</span></td><td class="num">${fmtFull(r.fob)}</td><td class="num">${r.ops}</td></tr>`).join('');
+}
+
+// ══════════════════════════════════════════════════════════
+//  EXPLORER
+// ══════════════════════════════════════════════════════════
+function buildExplorerFilter() {
+  if (!MX) return;
+  const sel = document.getElementById('exp-pais');
+  if (!sel) return;
+  const paises = [...new Set(MX.facts.map(r=>r.pais_origen).filter(Boolean))].sort();
+  paises.forEach(p => { const o = document.createElement('option'); o.value=p; o.textContent=p; sel.appendChild(o); });
+  renderExplorer();
+}
+
+function renderExplorer() {
+  if (!MX) return;
+  const q = (document.getElementById('exp-q')?.value||'').toLowerCase();
+  const cat = document.getElementById('exp-cat')?.value||'';
+  const yr = document.getElementById('exp-yr')?.value||'';
+  const pais = document.getElementById('exp-pais')?.value||'';
+
+  const filtered = MX.facts.filter(r => {
+    if (cat && r.categoria!==cat) return false;
+    if (yr && String(r.anio)!==yr) return false;
+    if (pais && r.pais_origen!==pais) return false;
+    if (q) {
+      const hay = (r.importador||'')+(r.producto||'')+(r.pais_origen||'')+(r.proveedor||'');
+      if (!hay.toLowerCase().includes(q)) return false;
+    }
+    return true;
+  });
+
+  const count = document.getElementById('exp-count');
+  if (count) count.textContent = fmtN(filtered.length)+' registros';
+
+  const el = document.getElementById('exp-body');
+  if (!el) return;
+  const catCls = c => c?.includes('Ferm') ? 'b-ferm' : 'b-dest';
+  const catLbl = c => c?.includes('Ferm') ? '22.06' : '22.08';
+  const trunc = (s,n) => s && s.length>n ? s.substring(0,n)+'…' : (s||'—');
+
+  el.innerHTML = filtered.slice(0,400).map(r => `
+    <tr>
+      <td>${r.fecha||'—'}</td>
+      <td><span class="badge ${catCls(r.categoria)}">${catLbl(r.categoria)}</span></td>
+      <td title="${r.producto||''}">${trunc(r.producto,22)}</td>
+      <td title="${r.importador||''}">${trunc(r.importador,22)}</td>
+      <td>${r.estado||'—'}</td>
+      <td>${r.pais_origen||'—'}</td>
+      <td title="${r.proveedor||''}">${trunc(r.proveedor,18)}</td>
+      <td class="num">${r.fob_usd?fmtFull(r.fob_usd):'—'}</td>
+      <td class="num">${r.cantidad_litros?fmtN(Math.round(r.cantidad_litros)):'—'}</td>
+    </tr>`).join('');
+
+  if (filtered.length > 400) {
+    el.innerHTML += `<tr><td colspan="9" style="text-align:center;color:var(--tx3);padding:12px">Mostrando 400 de ${fmtN(filtered.length)} registros — aplica filtros para reducir</td></tr>`;
+  }
+}
+</script>
+</body>
+</html>
